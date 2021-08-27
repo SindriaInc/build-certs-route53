@@ -15,24 +15,16 @@ List of required envs. This envs will be set on your pipeline variables or in yo
 | AWS_SECRET_ACCESS_KEY     | <secret-key>                  |
 | AWS_DEFAULT_REGION        | eu-central-1                  |
 | IAC_MODE                  | standalone                    |
-| IAC_GIT_USERNAME          | <service-account-username>    |
-| IAC_GIT_PASSWORD          | <service-account-username>    |
-| IAC_GIT_PROVIDER          | <provider-fqdn>               |
-| IAC_GIT_NAMESPACE         | <repo-namespace>              |
-| IAC_INFRA_NAME            | <repo-slug>                   |
-| IAC_LIVE_CACHE            | <bucket-name>                 |
-| IAC_CURRENT_INFRA         | <bucket-name>                 |
-| LIGHTSAIL_NAME            | docker-node-01                |
-| LIGHTSAIL_PORT            | 8080                          |
-| LIGHTSAIL_PROTOCOL        | TCP                           |
-| LIGHTSAIL_CIDR            | 0.0.0.0/0                     |
+| IAC_CERTBOT_CACHE         | example-certbot-cache         |
+| IAC_CERTBOT_EMAIL         | devops@example.com            |
+| IAC_CERTBOT_DOMAIN        | example.com                   |
 
 
 ## Usage
 
 Paste this command in your pipeline step:
 
-`docker run --rm -t --env IAC_MODE=${IAC_MODE} --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --env AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} --env IAC_GIT_USERNAME=${IAC_GIT_USERNAME} --env IAC_GIT_PASSWORD=${IAC_GIT_PASSWORD} --env IAC_GIT_PROVIDER=${IAC_GIT_PROVIDER} --env IAC_GIT_NAMESPACE=${IAC_GIT_NAMESPACE} --env IAC_INFRA_NAME=${IAC_INFRA_NAME} --env IAC_LIVE_CACHE=${IAC_LIVE_CACHE} --env IAC_CURRENT_INFRA=${IAC_CURRENT_INFRA} --env LIGHTSAIL_NAME=${LIGHTSAIL_NAME} --env LIGHTSAIL_PORT=${LIGHTSAIL_PORT} --env LIGHTSAIL_PROTOCOL=${LIGHTSAIL_PROTOCOL} --env LIGHTSAIL_CIDR=${LIGHTSAIL_CIDR} sindriainc/cm-lightsail-instance-public-ports:1.0.0`
+`docker run --rm -t --env IAC_MODE=${IAC_MODE} --env AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} --env AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} --env AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION} --env IAC_CERTBOT_CACHE=${IAC_CERTBOT_CACHE} --env IAC_CERTBOT_EMAIL=${IAC_CERTBOT_EMAIL} --env IAC_CERTBOT_DOMAIN=${IAC_CERTBOT_DOMAIN} sindriainc/build-certs-route53:1.0.0`
 
 OR use the helper script:
 
@@ -42,9 +34,9 @@ IMPORTANT: `Remeber to set all envs in your .env file before run.`
 
 ### Tips and Tricks
 
-For standalone usage you can override security.yaml configuration with volume. Append this to command above:
+For standalone usage you can use certbot cache with volume. Append this to command above:
 
-`-v ./config:/var/www/app/config`
+`-v ./letsencrypt:/etc/letsencrypt`
 
 
 ## Setup Development Environment
