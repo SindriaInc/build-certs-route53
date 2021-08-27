@@ -14,7 +14,7 @@ List of required envs. This envs will be set on your pipeline variables or in yo
 | AWS_ACCESS_KEY_ID         | <access-key>                  |
 | AWS_SECRET_ACCESS_KEY     | <secret-key>                  |
 | AWS_DEFAULT_REGION        | eu-central-1                  |
-| IAC_MODE                  | standalone                    |
+| IAC_MODE                  | standalone or void            |
 | IAC_CERTBOT_CACHE         | example-certbot-cache         |
 | IAC_CERTBOT_EMAIL         | devops@example.com            |
 | IAC_CERTBOT_DOMAIN        | example.com                   |
